@@ -31,7 +31,7 @@ public class Main  {
 	
 	private static List<Boolean> data = new ArrayList<>(); 
 	private static int height;
-	private static int width = 64;
+	private static int width = 300;
 	private int offset;
 
 	
@@ -47,46 +47,43 @@ public class Main  {
 
 	public static void main(String[] args) {
 		
-//		if (args.length == 0) returnError();
+		if (args.length == 0) returnError();
 		
 		
-//		int byteRead;
-//		try {
-//			FileInputStream fis = new FileInputStream(args[0]);
-//			try {
-//				byteRead = fis.read();
-//				while (byteRead != -1) {
-//					for (int bit = 7; bit >= 0; bit--) {
-//						data.add((1 & (byteRead >> bit)) == 1);
-//					}
-//					byteRead = fis.read();
-//					
-//				}
-//			} finally {
-//				fis.close();
-//			}	
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("No such file");
-//			System.exit(-2);
-//		} catch (IOException ioe) {
-//			System.out.println("There was a problem with file IO.");
-//			System.exit(-3);
-//		}
-		
-		String enigma = "69I960EHE0A4A0IVG0EHE02500R4R0G1T30PLJ00V6V0EHE0V1U01V10U5U0VGV0V4R";
-		
-		for (int i= 0; i < enigma.length(); i++) {
-			int character = (0b1111111 & enigma.charAt(i));
-			int byteRead =  (character >= '0') && (character <= '9') ? character - '0' : character - 55;
-			for (int bit = 0; bit < 8; bit++) {
-				data.add((1 & (byteRead >> bit)) == 1);
-			}
+		int byteRead;
+		try {
+			FileInputStream fis = new FileInputStream(args[0]);
+			try {
+				byteRead = fis.read();
+				while (byteRead != -1) {
+					for (int bit = 7; bit >= 0; bit--) {
+						data.add((1 & (byteRead >> bit)) == 1);
+					}
+					byteRead = fis.read();
+					
+				}
+			} finally {
+				fis.close();
+			}	
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No such file");
+			System.exit(-2);
+		} catch (IOException ioe) {
+			System.out.println("There was a problem with file IO.");
+			System.exit(-3);
 		}
 		
-//		int toPad = data.size() % 8;
-//		for (int i = 0; i < toPad; i++) data.add(0);
+//		String enigma = "69I960EHE0A4A0IVG0EHE02500R4R0G1T30PLJ00V6V0EHE0V1U01V10U5U0VGV0V4R";
 //		
+//		for (int i= 0; i < enigma.length(); i++) {
+//			int character = (0b1111111 & enigma.charAt(i));
+//			int byteRead =  (character >= '0') && (character <= '9') ? character - '0' : character - 55;
+//			for (int bit = 0; bit < 8; bit++) {
+//				data.add((1 & (byteRead >> bit)) == 1);
+//			}
+//		}
+		
 		Main app = new Main();
 		app.startApp();
 				
