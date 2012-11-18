@@ -1,3 +1,4 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,7 +24,8 @@ public class DisplayPanel extends JComponent{
 	      if (rectQueue == null) return;
 	      Graphics2D g2d = (Graphics2D) g;
           
-	      g2d.setPaint(Color.red);
+	      g2d.setPaint(new Color(100,100,100, 30));
+	      //g2d.setComposite(makeComposite(0.5f));
   	      
 	      Rectangle2D.Double rect;
 	      while ((rect = rectQueue.poll()) != null) {
@@ -32,6 +34,11 @@ public class DisplayPanel extends JComponent{
 		  
 
 
+	}
+	
+	private AlphaComposite makeComposite(float alpha) {
+		  int type = AlphaComposite.SRC_OVER;
+		  return(AlphaComposite.getInstance(type, alpha));
 	}
 	
 
